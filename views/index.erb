@@ -1,0 +1,121 @@
+<html>
+<head>
+	<title>Can I get a space in Perth city?</title>
+	<style type="text/css">
+		body {
+			background-color: #061319;
+			font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+		}
+
+		p {
+			color: white;
+		}
+
+		div#jail {
+			padding-top: 5%;
+			height: 80%;
+			width: 50%;
+    		margin: 0px auto;
+    		text-align: center;
+    		font-size: 400%;
+		}
+
+		#message p {
+			margin-bottom: 20px;
+			font-size: 110%;
+		}
+
+		#message p, #question p, #count p {
+			text-shadow: 2px 2px 5px #000;
+		}
+
+		div#count {
+			font-size: 28%;
+
+			margin-bottom: 5%;
+		}
+
+		div.thelist {
+			margin: 0px 0px 10% 0px;
+		}
+
+		.thelist h2 {
+			padding: 0;
+			margin: 0;
+			color: white;
+			font-size: 35%;
+		}
+
+		.thelist ul {
+			padding: 0;
+			margin: 0;
+		}
+
+		.thelist ul li {
+			font-size: 25%;
+			color: white;
+			list-style-type: none;
+			padding-bottom: 2px;
+		}
+
+		.thelist ul li a, .thelist ul li a:visited, .thelist ul li a:hover {
+			color: white;
+			text-decoration: none;
+		}
+
+		.thelist ul li a:hover {
+			color: white;
+			text-decoration: underline;
+		}
+
+		#credits {
+			font-size: 16%;
+			text-align: right;
+			border-right: 1px solid white;
+			padding-right: 5px;
+		}
+
+		#credits p {
+			padding: 0;
+			margin: 0;
+		}
+
+		#credits a, #credits a:hover, #credits a:visited {
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id="jail">
+		<div id="question">
+			<p>Can I park in Perth city?</p>
+		</div>
+		<div id="message">
+			<p style="color: <%= @data[:status][:color] %>;"><%= @data[:status][:message] %></p>
+		</div>
+		<div id="count">
+			<p>There are <%= @data[:count][:inner] %> spaces available</p>
+		</div>
+
+		<% ["Inner", "Outer"].each do |type| %>
+			<div class="thelist">
+				<h2><%= type %></h2>
+				<ul>
+				<% @data[:list][type.downcase.to_sym].each do |place| %>
+					<% puts place %>
+					<li><a href="http://maps.google.com.au/maps?q=<%= place[:name].gsub(/\s+/,"+") %>+parking+perth+australia"><%= place[:name] %>: <%= place[:available] %> spaces available</a></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div id="credits">
+			<p>Powered by the data feed from <a href="http://www.cityofperthparking.com.au/">City of Perth Parking</a></p>
+			<p>All data owned by City of Perth Parking, not for commerical use</p>
+			<p>This is just a fun hack with no copyright violations intended</p>
+			<p>Grab the source at <a href="https://github.com/callumj/Can-I-Park-in-Perth">GitHub</a></p>
+			<p>Developed by <a href="http://www.mullac.org">Callum Jones</a> <a href="http://www.twitter.com/callumj">@callumj</a></p>
+		</div>
+	</div>
+</body>
+</html>
