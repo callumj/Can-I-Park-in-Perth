@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Can I get a space in Perth city?</title>
+	<meta name="description" content="Find out if you can park in Perth city with a simple answer. Collating data from City of Perth Parking" />
 	<style type="text/css">
 		body {
 			background-color: #061319;
@@ -102,7 +103,6 @@
 				<h2><%= type %></h2>
 				<ul>
 				<% @data[:list][type.downcase.to_sym].each do |place| %>
-					<% puts place %>
 					<li><a href="http://maps.google.com.au/maps?q=<%= place[:name].gsub(/\s+/,"+") %>+parking+perth+australia"><%= place[:name] %>: <%= place[:available] %> spaces available</a></li>
 				<% end %>
 				</ul>
@@ -113,7 +113,7 @@
 			<p>Powered by the data feed from <a href="http://www.cityofperthparking.com.au/">City of Perth Parking</a></p>
 			<p>All data owned by City of Perth Parking, not for commerical use</p>
 			<p>This is just a fun hack with no copyright violations intended</p>
-			<p>Grab the source at <a href="https://github.com/callumj/Can-I-Park-in-Perth">GitHub</a></p>
+			<p>Grab the source at <a href="https://github.com/callumj/Can-I-Park-in-Perth">GitHub</a> - Grab the <a href="/data.json">JSON</a></p>
 			<p>Developed by <a href="http://www.mullac.org">Callum Jones</a> <a href="http://www.twitter.com/callumj">@callumj</a></p>
 		</div>
 	</div>
