@@ -13,17 +13,22 @@
 		}
 
 		div#jail {
-			padding-top: 5%;
+			padding-top: 2%;
 			height: 80%;
 			width: 50%;
     		margin: 0px auto;
     		text-align: center;
-    		font-size: 400%;
+    		font-size: 430%;
+		}
+
+		#question p {
+			padding: 2% 0 3% 0;
+			margin: 0;
 		}
 
 		#message p {
 			margin-bottom: 20px;
-			font-size: 110%;
+			font-size: 130%;
 		}
 
 		#message p, #question p, #count p {
@@ -31,20 +36,20 @@
 		}
 
 		div#count {
-			font-size: 28%;
+			font-size: 22%;
 
-			margin-bottom: 5%;
+			margin-bottom: 15%;
 		}
 
 		div.thelist {
-			margin: 0px 0px 10% 0px;
+			margin: 0px 0px 5% 0px;
 		}
 
 		.thelist h2 {
 			padding: 0;
 			margin: 0;
 			color: white;
-			font-size: 35%;
+			font-size: 34%;
 		}
 
 		.thelist ul {
@@ -53,7 +58,7 @@
 		}
 
 		.thelist ul li {
-			font-size: 25%;
+			font-size: 20%;
 			color: white;
 			list-style-type: none;
 			padding-bottom: 2px;
@@ -70,14 +75,14 @@
 		}
 
 		#credits {
-			font-size: 16%;
+			font-size: 9%;
 			text-align: right;
 			border-right: 1px solid white;
 			padding-right: 5px;
 		}
 
 		#credits p {
-			padding: 0;
+			padding: 0 0 2px 0;
 			margin: 0;
 		}
 
@@ -95,7 +100,7 @@
 			<p style="color: <%= @data[:status][:color] %>;"><%= @data[:status][:message] %></p>
 		</div>
 		<div id="count">
-			<p>There are <%= @data[:count][:inner] %> spaces available</p>
+			<p><%= @data[:count][:inner] %> spaces available</p>
 		</div>
 
 		<% ["Inner", "Outer"].each do |type| %>
