@@ -21,7 +21,7 @@ class Helper
 		when count <= 5
 			{:color => "white", :message => "No."}
 		when count <= 10
-			{:color => "#ff0d00", :message => "Unlikey"}
+			{:color => "#ff0d00", :message => "Unlikely"}
 		when count <= 50
 			{:color => "#ff6d00", :message => "Hurry"}
 		when count <= 100
