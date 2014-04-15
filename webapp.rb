@@ -32,33 +32,35 @@ class Helper
 	end
 end
 
-get %r{/(data[.]json)?} do |json|
-	response = Helper.get_data
+class WebApp < Sinatra::Base
+	get %r{/(data[.]json)?} do |json|
+		response = Helper.get_data
 
-	total_parks = {}
-	total_parks[:inner] = 0
-	total_parks[:outer] = 0
+		total_parks = {}
+		total_parks[:inner] = 0
+		total_parks[:outer] = 0
 
-	all_parks = {}
-	response["response"].each {|park| all_parks[park["systemName"]] = park}
+		all_parks = {}
+		response["response"].each {|park| all_parks[park["systemName"]] = park}
 
-	park_list = {}
-	park_list[:inner] = []
-	park_list[:outer] = []
-	PARK_LIST.each_key do |type|
-		PARK_LIST[type].each do |park| 
-			t = type.to_sym
-			total_parks[t] += all_parks[park]["freeSpaces"].to_i
-			park_list[t] <<  {:name => all_parks[park]["displayName"], :available => all_parks[park]["freeSpaces"]}
+		park_list = {}
+		park_list[:inner] = []
+		park_list[:outer] = []
+		PARK_LIST.each_key do |type|
+			PARK_LIST[type].each do |park| 
+				t = type.to_sym
+				total_parks[t] += all_parks[park]["freeSpaces"].to_i
+				park_list[t] <<  {:name => all_parks[park]["displayName"], :available => all_parks[park]["freeSpaces"]}
+			end
 		end
-	end
 
-	@data = {:count => total_parks, :list => park_list, :status => Helper.get_spot?(total_parks[:inner])}
+		@data = {:count => total_parks, :list => park_list, :status => Helper.get_spot?(total_parks[:inner])}
 
-	if json.nil?
-		erb :index
-	else
-		content_type :json
-		@data.to_json
+		if json.nil?
+			erb :index
+		else
+			content_type :json
+			@data.to_json
+		end
 	end
 end

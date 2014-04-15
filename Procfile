@@ -1,1 +1,1 @@
-web: bundle exec ruby webapp.rb -p $PORT
+web: bundle exec passenger start -p $PORT
